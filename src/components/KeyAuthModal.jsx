@@ -45,11 +45,6 @@ export default function KeyAuthModal({ onAuthenticated }) {
 
   return (
     <div className="auth-overlay">
-      <div className="app-bg" />
-      <div className="orb orb-1" />
-      <div className="orb orb-2" />
-      <div className="orb orb-3" />
-
       <div className="auth-card glass-panel-static">
         <div className="auth-icon">
           <Lock size={28} />
