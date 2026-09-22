@@ -1,8 +1,9 @@
 import { useState } from 'react'
-import { FolderUp, Code, LogOut } from 'lucide-react'
+import { FolderUp, Code, HardDriveDownload, LogOut } from 'lucide-react'
 import KeyAuthModal from './components/KeyAuthModal'
 import FileDropzone from './components/FileDropzone'
 import SnippetEditor from './components/SnippetEditor'
+import DriveFiles from './components/DriveFiles'
 import UploadSuccessModal from './components/UploadSuccessModal'
 import './index.css'
 
@@ -31,12 +32,6 @@ export default function App() {
 
   return (
     <div className="app-container">
-      {/* Background */}
-      <div className="app-bg" />
-      <div className="orb orb-1" />
-      <div className="orb orb-2" />
-      <div className="orb orb-3" />
-
       {/* Dashboard */}
       <div className="dashboard">
         {/* Header */}
@@ -46,19 +41,9 @@ export default function App() {
             <button
               onClick={handleLogout}
               title="Lock"
-              style={{
-                background: 'rgba(255,255,255,0.06)',
-                border: '1px solid rgba(255,255,255,0.1)',
-                borderRadius: '10px',
-                color: 'var(--text-tertiary)',
-                cursor: 'pointer',
-                padding: '8px',
-                display: 'flex',
-                alignItems: 'center',
-                transition: 'all 0.2s var(--ease-out)',
-              }}
+              className="logout-btn"
             >
-              <LogOut size={16} />
+              <LogOut size={15} />
             </button>
           </div>
           <p className="header-tagline">Drop files & code straight to your Google Drive</p>
@@ -70,30 +55,41 @@ export default function App() {
             className={`tab-btn ${activeTab === 'files' ? 'active' : ''}`}
             onClick={() => setActiveTab('files')}
           >
-            <FolderUp size={18} />
+            <FolderUp size={16} />
             Files
           </button>
           <button
             className={`tab-btn ${activeTab === 'snippet' ? 'active' : ''}`}
             onClick={() => setActiveTab('snippet')}
           >
-            <Code size={18} />
+            <Code size={16} />
             Code Snippet
+          </button>
+          <button
+            className={`tab-btn ${activeTab === 'drive' ? 'active' : ''}`}
+            onClick={() => setActiveTab('drive')}
+          >
+            <HardDriveDownload size={16} />
+            Drive Files
           </button>
         </div>
 
         {/* Tab Content */}
         <div className="glass-panel-static" style={{ padding: '24px', minHeight: '280px' }}>
-          {activeTab === 'files' ? (
+          {activeTab === 'files' && (
             <FileDropzone
               masterKey={masterKey}
               onUploadSuccess={handleUploadSuccess}
             />
-          ) : (
+          )}
+          {activeTab === 'snippet' && (
             <SnippetEditor
               masterKey={masterKey}
               onUploadSuccess={handleUploadSuccess}
             />
+          )}
+          {activeTab === 'drive' && (
+            <DriveFiles masterKey={masterKey} />
           )}
         </div>
       </div>

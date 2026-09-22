@@ -97,13 +97,7 @@ export default function SnippetEditor({ masterKey, onUploadSuccess }) {
       />
 
       {/* Character count */}
-      <div style={{
-        display: 'flex',
-        justifyContent: 'flex-end',
-        marginTop: '8px',
-        fontSize: '0.75rem',
-        color: 'var(--text-tertiary)',
-      }}>
+      <div className="char-count">
         {content.length.toLocaleString()} characters
       </div>
 

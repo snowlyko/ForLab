@@ -4,6 +4,9 @@ import verifyKeyHandler from './api/verify-key.js'
 import createUploadUrlHandler from './api/create-upload-url.js'
 import uploadSnippetHandler from './api/upload-snippet.js'
 import uploadFileHandler from './api/upload-file.js'
+import listFilesHandler from './api/list-files.js'
+import getFileContentHandler from './api/get-file-content.js'
+import deleteFileHandler from './api/delete-file.js'
 
 dotenv.config()
 
@@ -31,6 +34,9 @@ app.post('/api/verify-key', adapter(verifyKeyHandler))
 app.post('/api/create-upload-url', adapter(createUploadUrlHandler))
 app.post('/api/upload-snippet', adapter(uploadSnippetHandler))
 app.post('/api/upload-file', adapter(uploadFileHandler))
+app.post('/api/list-files', adapter(listFilesHandler))
+app.post('/api/get-file-content', adapter(getFileContentHandler))
+app.post('/api/delete-file', adapter(deleteFileHandler))
 
 app.listen(PORT, () => {
   console.log(`\n🚀 Local API Server running at http://localhost:${PORT}`)

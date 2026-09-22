@@ -33,32 +33,17 @@ export default function UploadSuccessModal({ results, onClose }) {
         onClick={(e) => e.stopPropagation()}
       >
         {/* Close Button */}
-        <button
-          onClick={onClose}
-          style={{
-            position: 'absolute',
-            top: '16px',
-            right: '16px',
-            background: 'rgba(255,255,255,0.08)',
-            border: '1px solid rgba(255,255,255,0.1)',
-            borderRadius: '8px',
-            color: 'var(--text-secondary)',
-            cursor: 'pointer',
-            padding: '6px',
-            display: 'flex',
-            transition: 'all 0.2s var(--ease-out)',
-          }}
-        >
-          <X size={16} />
+        <button onClick={onClose} className="modal-close-btn">
+          <X size={14} />
         </button>
 
         {/* Success Icon */}
         <div className="modal-success-icon">
-          <CheckCircle size={30} />
+          <CheckCircle size={26} />
         </div>
 
         <h2 className="modal-title">
-          {singleResult ? 'Uploaded!' : `${results.length} Files Uploaded!`}
+          {singleResult ? 'Uploaded' : `${results.length} Files Uploaded`}
         </h2>
         <p className="modal-subtitle">
           {singleResult
@@ -69,14 +54,14 @@ export default function UploadSuccessModal({ results, onClose }) {
 
         {/* QR Code (for single file) */}
         {singleResult && primaryLink && (
-          <div style={{ display: 'flex', justifyContent: 'center', marginBottom: '20px' }}>
+          <div className="modal-qr-wrap">
             <div className="modal-qr">
               <QRCodeSVG
                 value={primaryLink}
-                size={140}
+                size={130}
                 level="M"
                 bgColor="#ffffff"
-                fgColor="#0a0a1a"
+                fgColor="#0b0b0d"
               />
             </div>
           </div>
@@ -84,14 +69,9 @@ export default function UploadSuccessModal({ results, onClose }) {
 
         {/* Links */}
         {results.map((result, i) => (
-          <div key={i} style={{ marginBottom: i < results.length - 1 ? '10px' : '20px' }}>
+          <div key={i} className="modal-link-row">
             {!singleResult && (
-              <div style={{
-                fontSize: '0.75rem',
-                color: 'var(--text-secondary)',
-                marginBottom: '6px',
-                textAlign: 'left',
-              }}>
+              <div className="modal-link-label">
                 {result.fileName}
               </div>
             )}
@@ -103,7 +83,7 @@ export default function UploadSuccessModal({ results, onClose }) {
                 className={`modal-copy-btn ${copiedIndex === i ? 'copied' : ''}`}
                 onClick={() => copyLink(result.webViewLink, i)}
               >
-                {copiedIndex === i ? <Check size={12} /> : <Copy size={12} />}
+                {copiedIndex === i ? <Check size={11} /> : <Copy size={11} />}
                 {copiedIndex === i ? 'Copied' : 'Copy'}
               </button>
             </div>
@@ -119,7 +99,7 @@ export default function UploadSuccessModal({ results, onClose }) {
             className="btn-secondary"
             style={{ textDecoration: 'none' }}
           >
-            <ExternalLink size={16} />
+            <ExternalLink size={14} />
             Open in Google Drive
           </a>
         )}
